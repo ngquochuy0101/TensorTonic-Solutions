@@ -6,7 +6,8 @@ def expected_value_discrete(x, p):
     """
     # Write code here
     if np.sum(p) != 1 :
-        raise ValueError("Tổng các xác suất p phải bằng 1.") 
+        raise ValueError
+        
     x = np.array(x)
     p = np.array(p)
     return float(np.sum(x*p))
