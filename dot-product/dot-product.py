@@ -9,7 +9,8 @@ def dot_product(x, y):
     # Write code here
     x = np.array(x)
     y = np.array(y)
-    return sum(x*y)
+    return float ( sum ( np.array(x) * np.array(y)))
+    
 x = [1,2,3]
 y = [4,5,6]
 print(dot_product(x,y))
