@@ -10,5 +10,5 @@ def euclidean_distance(x, y):
     # Write code here
     x = np.array(x)
     y = np.array(y)
-    return float(np.sqrt(sum((( x - y ))**2)))
+    return float( np.sqrt( sum ( (np.array(x) - np.array(y))**2)))
 print(euclidean_distance(x,y))
