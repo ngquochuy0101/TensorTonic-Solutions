@@ -6,7 +6,8 @@ def log_transform(values):
     """
     
 
-    return np.log1p(np.maximum(0,np.array(values))).tolist()
+    return np.log1p(np.maximum(0, values)).tolist()
+    
                     
 values = [-1,1,2,3]
 print(log_transform(values))
