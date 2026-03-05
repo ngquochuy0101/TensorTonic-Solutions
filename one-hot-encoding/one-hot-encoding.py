@@ -8,7 +8,8 @@ def one_hot(y, num_classes=None):
     N = len(y)
     y = np.array(y)
     if num_classes == None:
-        K = len(np.unique(y))
+        K = np.max(y) + 1
+        
     else:
         K = num_classes
     print(K)
