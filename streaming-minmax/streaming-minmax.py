@@ -11,7 +11,7 @@ def streaming_minmax_init(D):
 def streaming_minmax_update(state, X_batch, eps=1e-8):
     
     
-    batch_min = np.min(X_batch,axis=0)
+    batch_min = np.min(X_batch, axis=0)
     batch_max = np.max(X_batch, axis=0)
     
     state["min"] = np.minimum(state["min"], batch_min)
