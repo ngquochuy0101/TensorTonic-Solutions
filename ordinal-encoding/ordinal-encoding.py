@@ -7,8 +7,8 @@ def ordinal_encoding(values, ordering):
     values = np.array(values)
     ordering = np.array(ordering)
     mask = values[:, None] == ordering
-    output =np.argmax(mask, axis = 1)
-    return output.tolist()
+    cols, row = np.where(mask)
+    return row.tolist()
     
 
     
