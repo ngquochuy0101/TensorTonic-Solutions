@@ -13,8 +13,8 @@ def binning(values, num_bins):
     
     values = np.array(values)
 
-    min_v = min(values)
-    max_v = max(values)
+    min_v = np.min(values)
+    max_v = np.max(values)
 
     w = (max_v - min_v)/num_bins
     bin = np.minimum(np.floor((values - min_v)/w), num_bins -1)
