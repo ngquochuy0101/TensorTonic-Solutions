@@ -4,11 +4,12 @@ def frequency_encoding(values):
     Replace each value with its frequency proportion.
     """
     # Write code here
-    emplement, counts = np.unique(values, return_counts = True)
-    counts_dict = dict(zip(emplement,counts))
-
-    out = [counts_dict[v]/len(values) for v in values]
-    return out
+    emplement,inverse, counts = np.unique(values,return_inverse = True, return_counts = True)
+    out = counts[inverse]/len(values)
+    
+    return out.tolist()
+    
 
 values = ["cat","dog","cat","cat","dog"]
+
 print(frequency_encoding(values))
