@@ -7,10 +7,8 @@ def linear_regression_closed_form(X, y):
     # Write code here
     X = np.array(X)
     y = np.array(y)
-    
-    a = np.linalg.inv(np.dot(X.T, X))
-    b = np.dot(X.T, y)
-    w = np.dot(a,b)
+    w = np.linalg.inv(X.T @ X) @ (X.T @ y)
+
     return w
 X = [[1,1],[1,2],[1,3]]
 y = [3,5,7]
