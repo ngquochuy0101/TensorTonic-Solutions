@@ -2,254 +2,223 @@
 
 [![Python](https://img.shields.io/badge/Python-3.7%2B-blue.svg)](https://www.python.org/)
 [![NumPy](https://img.shields.io/badge/NumPy-Required-orange.svg)](https://numpy.org/)
-[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
-> A comprehensive collection of machine learning and deep learning algorithms implemented from scratch in Python, featuring optimization techniques, loss functions, statistical methods, and data preprocessing utilities.
+A practical collection of machine learning and deep learning exercises implemented from scratch with NumPy.
 
-## 📋 Table of Contents
+The repository currently contains **47 standalone implementations**, each in its own directory.
+
+## Table of Contents
 
 - [Overview](#overview)
-- [Features](#features)
+- [What Is Included](#what-is-included)
 - [Project Structure](#project-structure)
-- [Installation](#installation)
-- [Usage](#usage)
+- [Quick Start](#quick-start)
+- [How to Run](#how-to-run)
 - [Algorithm Catalog](#algorithm-catalog)
+- [Development Notes](#development-notes)
 - [Requirements](#requirements)
 - [Contributing](#contributing)
-- [Acknowledgments](#acknowledgments)
+- [License](#license)
 
-## 🎯 Overview
+## Overview
 
-This repository contains pure NumPy implementations of fundamental machine learning algorithms and utilities sourced from [TensorTonic](https://tensortonic.com) — a platform dedicated to hands-on implementation of ML/DL concepts from first principles.
+This repository focuses on implementation-first learning:
 
-Each implementation focuses on:
-- **Clarity**: Well-documented, readable code
-- **Correctness**: Mathematically rigorous implementations
-- **Educational Value**: Learning through implementation
-- **Minimal Dependencies**: Using only NumPy for core computations
+- Core ML and DL concepts written with NumPy
+- No high-level ML frameworks required
+- One concept per folder for easy exploration
+- Script-style files that can be run directly
 
-## ✨ Features
+## What Is Included
 
-- **30+ Algorithm Implementations**: Covering optimization, loss functions, metrics, and preprocessing
-- **From-Scratch Approach**: No high-level ML libraries, pure mathematical implementations
-- **Modular Design**: Each algorithm in its own directory for easy exploration
-- **Production-Ready Code**: Vectorized operations using NumPy for efficiency
-- **Comprehensive Coverage**: From basic statistics to advanced optimization techniques
+| Area | Count | Examples |
+|---|---:|---|
+| Optimizers, training, and LR schedules | 10 | `adagrad-optimizer`, `adamw-optimizer`, `nadam-optimizer`, `cosine-annealing-lr` |
+| Losses and objectives | 5 | `hinge-loss`, `huber-loss`, `mean-squared-error`, `log-loss-per-sample` |
+| Distances and linear algebra | 6 | `cosine-similarity`, `euclidean-distance`, `dot-product`, `matrix-trace` |
+| Statistics and probability | 10 | `mean-median-mode`, `sample-var-std`, `binomial-pmf-cdf`, `entropy-node` |
+| Preprocessing and feature engineering | 13 | `one-hot-encoding`, `tfidf-vectorizer`, `zscore-standardization`, `impute-missing` |
+| Models and evaluation helpers | 3 | `linear-regression-closed-form`, `random-forest-vote`, `precision-recall-at-k` |
 
-## 📁 Project Structure
+## Project Structure
 
-```
+The repository uses a flat folder layout:
+
+```text
 TensorTonic-Solutions/
-├── README.md
-│
-├── Optimization Algorithms/
-│   ├── adagrad-optimizer/           # Adaptive Gradient Algorithm
-│   ├── adamw-optimizer/             # Adam with Weight Decay
-│   ├── rmsprop-optimizer/           # Root Mean Square Propagation
-│   └── nesterov-momentum/           # Nesterov Accelerated Gradient
-│
-├── Loss Functions/
-│   ├── huber-loss/                  # Robust regression loss
-│   ├── hinge-loss/                  # SVM classification loss
-│   ├── mean-squared-error/          # L2 regression loss
-│   └── wasserstein-critic-loss/     # GAN discriminator loss
-│
-├── Distance & Similarity Metrics/
-│   ├── cosine-similarity/           # Angular similarity measure
-│   ├── euclidean-distance/          # L2 distance metric
-│   └── manhattan-distance/          # L1 distance metric
-│
-├── Statistical Methods/
-│   ├── mean-median-mode/            # Central tendency measures
-│   ├── sample-var-std/              # Sample variance & std deviation
-│   ├── percentiles/                 # Quantile calculations
-│   ├── entropy-node/                # Shannon entropy for decision trees
-│   └── expected-value-discrete/     # Discrete probability distributions
-│
-├── Probability Distributions/
-│   ├── bernoulli-pmf/               # Binary outcome distribution
-│   ├── binomial-pmf-cdf/            # Binomial probabilities
-│   └── geometric-pmf-mean/          # Geometric distribution
-│
-├── Data Preprocessing/
-│   ├── one-hot-encoding/            # Categorical variable encoding
-│   ├── pad-sequences/               # Sequence padding for RNNs
-│   ├── differencing/                # Time series stationarity
-│   ├── log-transform/               # Logarithmic transformation
-│   └── streaming-minmax/            # Online normalization
-│
-├── Linear Algebra Operations/
-│   ├── dot-product/                 # Vector inner product
-│   ├── matrix-trace/                # Trace of square matrices
-│   └── make-diagonal/               # Diagonal matrix construction
-│
-├── Learning Rate Schedulers/
-│   ├── cosine-annealing-lr/         # Cosine annealing schedule
-│   └── warmup-decay-lr/             # Warmup + decay schedule
-│
-└── Evaluation Metrics/
-    └── precision-recall-at-k/       # Top-K recommendation metrics
+|-- README.md
+|-- adadelta-optimizer/
+|   `-- adadelta-optimizer.py
+|-- adagrad-optimizer/
+|   `-- adagrad-optimizer.py
+|-- ...
+|-- warmup-decay-lr/
+|   `-- warmup-decay-lr.py
+`-- zscore-standardization/
+    `-- zscore-standardization.py
 ```
 
-## 🚀 Installation
+Convention: each folder contains one Python file with the same base name as the folder.
 
-### Prerequisites
+## Quick Start
 
-- Python 3.7 or higher
-- pip package manager
+1. Clone the repository:
 
-### Setup
+```bash
+git clone https://github.com/your-username/TensorTonic-Solutions.git
+cd TensorTonic-Solutions
+```
 
-1. **Clone the repository**:
-   ```bash
-   git clone https://github.com/yourusername/TensorTonic-Solutions.git
-   cd TensorTonic-Solutions
-   ```
+2. (Optional) Create and activate a virtual environment:
 
-2. **Create a virtual environment** (recommended):
-   ```bash
-   python -m venv venv
-   source venv/bin/activate  # On Windows: venv\Scripts\activate
-   ```
+```bash
+python -m venv .venv
+```
 
-3. **Install dependencies**:
-   ```bash
-   pip install numpy
-   ```
+Linux/macOS:
 
-## 💻 Usage
+```bash
+source .venv/bin/activate
+```
 
-Each algorithm is self-contained in its directory. Navigate to any folder and run the Python script:
+Windows PowerShell:
 
-### Example 1: Cosine Similarity
+```powershell
+.\.venv\Scripts\Activate.ps1
+```
+
+3. Install dependencies:
+
+```bash
+pip install numpy
+```
+
+## How to Run
+
+Each implementation is runnable as a script.
+
+Example:
+
+```bash
+cd cosine-similarity
+python cosine-similarity.py
+```
+
+Another example:
+
+```bash
+cd adagrad-optimizer
+python adagrad-optimizer.py
+```
+
+Notes:
+
+- Many files include sample input and `print(...)` output directly in the script body.
+- File names use hyphens, so direct `import module_name` is not always convenient without renaming or dynamic imports.
+
+## Algorithm Catalog
+
+### Optimizers, Training, and Schedules
+
+- `adadelta-optimizer`
+- `adagrad-optimizer`
+- `adamw-optimizer`
+- `nadam-optimizer`
+- `nesterov-momentum`
+- `rmsprop-optimizer`
+- `gradient-clipping`
+- `cosine-annealing-lr`
+- `warmup-decay-lr`
+- `logistic-regression-training`
+
+### Losses and Objectives
+
+- `hinge-loss`
+- `huber-loss`
+- `mean-squared-error`
+- `log-loss-per-sample`
+- `wasserstein-critic-loss`
+
+### Distances and Linear Algebra
+
+- `cosine-similarity`
+- `euclidean-distance`
+- `manhattan-distance`
+- `dot-product`
+- `matrix-trace`
+- `make-diagonal`
+
+### Statistics, Probability, and Tree Metrics
+
+- `mean-median-mode`
+- `sample-var-std`
+- `percentiles`
+- `expected-value-discrete`
+- `bernoulli-pmf`
+- `binomial-pmf-cdf`
+- `geometric-pmf-mean`
+- `entropy-node`
+- `gini-impurity`
+- `information-gain`
+
+### Preprocessing and Feature Engineering
+
+- `one-hot-encoding`
+- `ordinal-encoding`
+- `frequency-encoding`
+- `tfidf-vectorizer`
+- `zscore-standardization`
+- `log-transform`
+- `differencing`
+- `binning`
+- `rank-transform`
+- `impute-missing`
+- `streaming-minmax`
+- `pad-sequences`
+- `kfold-split`
+
+### Models and Evaluation Helpers
+
+- `linear-regression-closed-form`
+- `random-forest-vote`
+- `precision-recall-at-k`
+
+## Development Notes
+
+- This repository is educational and implementation-oriented.
+- Some scripts include debug or demonstration prints by default.
+- If you want import-friendly modules, consider renaming files from `kebab-case.py` to `snake_case.py` and moving sample run code under:
 
 ```python
-import numpy as np
-from cosine_similarity import cosine_similarity
-
-a = np.array([1, 2, 3])
-b = np.array([2, 4, 6])
-
-similarity = cosine_similarity(a, b)
-print(f"Cosine Similarity: {similarity:.4f}")  # Output: 1.0000
+if __name__ == "__main__":
+    ...
 ```
 
-### Example 2: AdaGrad Optimizer
+## Requirements
 
-```python
-import numpy as np
-from adagrad_step import adagrad_step
+Minimum runtime dependency:
 
-w = np.array([1.0])      # Parameters
-g = np.array([1.0])      # Gradient
-G = np.array([0.0])      # Accumulated squared gradients
-lr = 0.1                 # Learning rate
-
-w_new, G_new = adagrad_step(w, g, G, lr=lr, eps=1e-8)
-print(f"Updated weights: {w_new}")
-```
-
-### Example 3: One-Hot Encoding
-
-```python
-import numpy as np
-from one_hot import one_hot
-
-labels = [0, 1, 2, 1, 0]
-encoded = one_hot(labels, num_classes=3)
-print(encoded)
-# [[1. 0. 0.]
-#  [0. 1. 0.]
-#  [0. 0. 1.]
-#  [0. 1. 0.]
-#  [1. 0. 0.]]
-```
-
-## 📚 Algorithm Catalog
-
-### Optimization Algorithms
-
-| Algorithm | Description | Key Features |
-|-----------|-------------|--------------|
-| **AdaGrad** | Adaptive learning rates per parameter | Good for sparse data |
-| **AdamW** | Adam with decoupled weight decay | Better generalization |
-| **RMSprop** | Moving average of squared gradients | Handles non-stationary objectives |
-| **Nesterov** | Momentum with lookahead | Faster convergence |
-
-### Loss Functions
-
-| Function | Type | Use Case |
-|----------|------|----------|
-| **Huber Loss** | Regression | Robust to outliers |
-| **Hinge Loss** | Classification | Support Vector Machines |
-| **MSE** | Regression | Standard squared error |
-| **Wasserstein** | GAN | Critic loss for WGANs |
-
-### Preprocessing & Feature Engineering
-
-- **One-Hot Encoding**: Convert categorical variables to binary vectors
-- **Pad Sequences**: Uniform length sequences for RNN input
-- **Differencing**: Remove trends in time series data
-- **Log Transform**: Reduce skewness in distributions
-- **Streaming MinMax**: Online feature scaling
-
-### Statistical & Probability Tools
-
-- **Entropy**: Information gain for decision trees
-- **Percentiles**: Robust outlier detection
-- **Expected Value**: Discrete probability calculations
-- **Bernoulli/Binomial/Geometric**: Probability distributions
-
-## 📦 Requirements
-
-```
+```text
 numpy>=1.19.0
 ```
 
-For development:
-```
-pytest>=6.0.0      # For testing
-black>=21.0        # For code formatting
-flake8>=3.9.0      # For linting
-```
+## Contributing
 
-## 🤝 Contributing
+Contributions are welcome.
 
-Contributions are welcome! Here's how you can help:
+Suggested contribution checklist:
 
-1. **Report Bugs**: Open an issue describing the problem
-2. **Suggest Enhancements**: Share ideas for new algorithms or improvements
-3. **Submit Pull Requests**: 
-   - Fork the repository
-   - Create a feature branch (`git checkout -b feature/new-algorithm`)
-   - Commit your changes (`git commit -m 'Add XYZ algorithm'`)
-   - Push to the branch (`git push origin feature/new-algorithm`)
-   - Open a Pull Request
+1. Keep functions deterministic and documented.
+2. Add edge-case handling where relevant.
+3. Prefer vectorized NumPy operations.
+4. Include a small usage example in the script.
 
-### Code Style Guidelines
+## License
 
-- Follow PEP 8 conventions
-- Include docstrings for all functions
-- Add type hints where applicable
-- Write unit tests for new implementations
-- Keep implementations dependency-minimal (NumPy only)
+No `LICENSE` file is currently present in this repository.
 
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🙏 Acknowledgments
-
-- **[TensorTonic](https://tensortonic.com)**: For providing the platform and algorithmic challenges
-- **NumPy Community**: For the foundational numerical computing library
-- **ML Community**: For open-source educational resources
-
-## 📧 Contact
-
-For questions or discussions, feel free to open an issue or reach out through GitHub.
+If you plan to distribute or accept external contributions, add a license file (for example MIT) at the repository root.
 
 ---
 
-**⭐ Star this repository if you find it helpful!**
-
-*Last Updated: March 2026*
+Last updated: March 19, 2026
