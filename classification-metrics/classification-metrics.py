@@ -24,35 +24,38 @@ def classification_metrics(y_true, y_pred, average="micro", pos_label=1):
     else:
         tps, fps, fns = [], [], []
         
-        element, count = np.unique(y_true, return_counts = True)
+        element, counts = np.unique(y_true, return_counts = True)
         for i in element:
             TP = np.sum((y_pred == i) & (y_true == i))
-            TN = np.sum((y_pred == i) & (y_true == i))
             FP = np.sum((y_pred == i) & (y_true !=i))
             FN = np.sum((y_pred != i) & (y_true == i))
             
             tps.append(float(TP))
             fps.append(float(FP))
             fns.append(float(FN))
+        # Tính sẵn các mảng (Vectorization)
         tps = np.array(tps)
         fps = np.array(fps)
         fns = np.array(fns)
+        p_array = tps / (tps + fps + 1e-9)
+        r_array = tps / (tps + fns + 1e-9)
+        f1_array = (2 * p_array * r_array) / (p_array + r_array + 1e-9)
         if average == 'micro':
             tps = np.sum(tps)
             fps = np.sum(fps)
             fns = np.sum(fns)
-            precision = ( tps/ (tps +fps ))
-            recall = tps /(tps + fns)
-            f1 = (2 * precision *recall) / (precision + recall)
-        elif average == "macro":
-            precision = np.mean(tps / (tps + fps))
-            recall = np.mean(tps/(tps +fns))
-            f1 = np.mean(((2 * (tps / (tps + fps)) *(tps/(tps +fns)))) / (tps / (tps + fps) + (tps/(tps +fns))))
-        elif average == "weighted":
-            precision = np.average((tps / (tps + fps)), weights = count)
-            recall = np.average((tps/(tps +fns)), weights = count)
-            f1 = np.average((((2 * (tps / (tps + fps)) *(tps/(tps +fns)))) / (tps / (tps + fps) + (tps/(tps +fns)))), weights = count)
+            precision = tps / (tps + fps + 1e-9)
+            recall = tps / (tps + fns + 1e-9)
             
+            f1 = (2 * precision * recall) / (precision + recall + 1e-9)
+        elif average == "macro":
+            precision = np.mean(p_array)
+            recall = np.mean(r_array)
+            f1 = np.mean(f1_array)
+        elif average == "weighted":
+            precision = np.average(p_array, weights = counts)
+            recall = np.average(r_array, weights = counts)
+            f1 = np.average(f1_array, weights = counts)
     accuracy= np.mean(y_pred == y_true)
     return {"accuracy": float(accuracy), "precision": float(precision),
     "recall": float(recall), "f1": float(f1)}
